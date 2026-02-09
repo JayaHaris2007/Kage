@@ -12,7 +12,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icon.png', 'vite.svg'],
       manifest: {
-        name: 'Kage - Habit Tracker',
+        name: 'Kage',
         short_name: 'Kage',
         description: 'Anime-Inspired Habit Tracker & To-Do App',
         theme_color: '#0a0a0a',
