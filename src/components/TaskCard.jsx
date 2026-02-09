@@ -21,7 +21,7 @@ const TaskCard = ({ task, onToggle, onDelete }) => {
             <div className="flex items-start space-x-4 w-full">
                 <button
                     onClick={() => onToggle(task.id, !task.completed)}
-                    className={`mt-1 w-6 h-6 rounded border flex items-center justify-center transition-all duration-300 ${task.completed
+                    className={`mt-1 w-6 h-6 rounded-full border flex items-center justify-center transition-all duration-300 ${task.completed
                         ? 'bg-white border-white text-black'
                         : 'bg-transparent border-textMuted hover:border-white'
                         }`}
@@ -39,13 +39,13 @@ const TaskCard = ({ task, onToggle, onDelete }) => {
 
                     <div className="flex items-center space-x-3 mt-3 text-xs uppercase tracking-wider">
                         {task.dueDate && (
-                            <span className="flex items-center text-textMuted bg-surfaceHighlight border border-white/5 px-2 py-1 rounded">
+                            <span className="flex items-center text-textMuted bg-surfaceHighlight border border-white/5 px-3 py-1 rounded-full">
                                 <Calendar size={12} className="mr-1.5" />
                                 {format(new Date(task.dueDate), 'MMM d')}
                             </span>
                         )}
 
-                        <span className={`flex items-center px-2 py-1 rounded border ${priorityStyles[task.priority]}`}>
+                        <span className={`flex items-center px-3 py-1 rounded-full border ${priorityStyles[task.priority]}`}>
                             <AlertCircle size={12} className="mr-1.5" />
                             {task.priority}
                         </span>

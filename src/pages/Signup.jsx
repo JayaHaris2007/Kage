@@ -74,7 +74,9 @@ const Signup = () => {
 
             <div className="max-w-md w-full glass-card border-t border-white/10 relative z-10 p-8 sm:p-10">
                 <div className="flex justify-center mb-6">
-                    <img src={AppLogo} alt="Kage Logo" className="w-20 h-20 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" />
+                    <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                        <img src={AppLogo} alt="Kage Logo" className="w-full h-full object-cover" />
+                    </div>
                 </div>
                 <h2 className="text-4xl font-black text-center mb-2 text-white text-glow tracking-[0.2em] uppercase">Join Kage</h2>
                 <p className="text-center text-neutral-500 text-xs mb-10 tracking-[0.3em] font-mono uppercase">Begin your journey</p>
@@ -89,7 +91,7 @@ const Signup = () => {
                             <input
                                 type="text"
                                 required
-                                className="w-full bg-surfaceHighlight border border-white/5 rounded-none py-3.5 pl-12 pr-4 text-white placeholder:text-neutral-800 focus:outline-none focus:border-white/20 focus:bg-white/5 transition-all font-mono text-sm"
+                                className="w-full bg-surfaceHighlight border border-white/5 rounded-full py-3.5 pl-12 pr-4 text-white placeholder:text-neutral-800 focus:outline-none focus:border-white/20 focus:bg-white/5 transition-all font-mono text-sm"
                                 placeholder="SHADOW HUNTER"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
@@ -104,7 +106,7 @@ const Signup = () => {
                             <input
                                 type="email"
                                 required
-                                className="w-full bg-surfaceHighlight border border-white/5 rounded-none py-3.5 pl-12 pr-4 text-white placeholder:text-neutral-800 focus:outline-none focus:border-white/20 focus:bg-white/5 transition-all font-mono text-sm"
+                                className="w-full bg-surfaceHighlight border border-white/5 rounded-full py-3.5 pl-12 pr-4 text-white placeholder:text-neutral-800 focus:outline-none focus:border-white/20 focus:bg-white/5 transition-all font-mono text-sm"
                                 placeholder="USER@KAGE.APP"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -119,7 +121,7 @@ const Signup = () => {
                             <input
                                 type="password"
                                 required
-                                className="w-full bg-surfaceHighlight border border-white/5 rounded-none py-3.5 pl-12 pr-4 text-white placeholder:text-neutral-800 focus:outline-none focus:border-white/20 focus:bg-white/5 transition-all font-mono text-sm"
+                                className="w-full bg-surfaceHighlight border border-white/5 rounded-full py-3.5 pl-12 pr-4 text-white placeholder:text-neutral-800 focus:outline-none focus:border-white/20 focus:bg-white/5 transition-all font-mono text-sm"
                                 placeholder="••••••••"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -134,7 +136,7 @@ const Signup = () => {
                             <input
                                 type="password"
                                 required
-                                className="w-full bg-surfaceHighlight border border-white/5 rounded-none py-3.5 pl-12 pr-4 text-white placeholder:text-neutral-800 focus:outline-none focus:border-white/20 focus:bg-white/5 transition-all font-mono text-sm"
+                                className="w-full bg-surfaceHighlight border border-white/5 rounded-full py-3.5 pl-12 pr-4 text-white placeholder:text-neutral-800 focus:outline-none focus:border-white/20 focus:bg-white/5 transition-all font-mono text-sm"
                                 placeholder="••••••••"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -146,7 +148,7 @@ const Signup = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full bg-white text-black font-black py-4 px-4 rounded-none transition-all duration-300 transform hover:-translate-y-1 active:scale-[0.98] shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center uppercase tracking-widest text-xs"
+                            className="w-full bg-white text-black font-black py-4 px-4 rounded-full transition-all duration-300 transform hover:-translate-y-1 active:scale-[0.98] shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center uppercase tracking-widest text-xs"
                         >
                             {loading ? <Loader2 className="animate-spin w-4 h-4" /> : 'Execute Signup'}
                         </button>
@@ -164,7 +166,7 @@ const Signup = () => {
                             type="button"
                             onClick={handleGoogleSignIn}
                             disabled={loading}
-                            className="w-full bg-surfaceHighlight hover:bg-white/10 text-white font-bold py-4 px-4 rounded-none transition-all duration-300 border border-white/5 hover:border-white/20 flex items-center justify-center uppercase tracking-widest text-xs group"
+                            className="w-full bg-surfaceHighlight hover:bg-white/10 text-white font-bold py-4 px-4 rounded-full transition-all duration-300 border border-white/5 hover:border-white/20 flex items-center justify-center uppercase tracking-widest text-xs group"
                         >
                             <svg className="w-4 h-4 mr-2 opacity-70 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z" />

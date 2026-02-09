@@ -21,8 +21,8 @@ const Navbar = () => {
             <div className="flex md:flex-col items-center justify-around md:justify-start h-full p-2 md:py-8 md:space-y-8">
 
                 {/* Logo (Desktop only) */}
-                <div className="hidden md:flex items-center justify-center w-14 h-14 rounded-full mb-8 overflow-hidden">
-                    <img src={AppLogo} alt="Kage Logo" className="w-full h-full object-contain" />
+                <div className="hidden md:flex items-center justify-center w-14 h-14 rounded-full mb-8 overflow-hidden border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                    <img src={AppLogo} alt="Kage Logo" className="w-full h-full object-cover rounded-full" />
                 </div>
 
                 {navItems.map((item) => {
@@ -33,7 +33,7 @@ const Navbar = () => {
                         <Link
                             key={item.path}
                             to={item.path}
-                            className={`relative group flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300 ${isActive
+                            className={`relative group flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 ${isActive
                                 ? 'bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.2)]'
                                 : 'text-textMuted hover:text-white hover:bg-white/5'
                                 }`}
@@ -41,7 +41,7 @@ const Navbar = () => {
                             <Icon size={22} strokeWidth={isActive ? 2.5 : 1.5} />
 
                             {/* Tooltip (Desktop) */}
-                            <span className="absolute left-14 bg-surface px-3 py-1.5 rounded border border-white/10 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity hidden md:block whitespace-nowrap pointer-events-none tracking-wide">
+                            <span className="absolute left-14 bg-surface px-3 py-1.5 rounded-full border border-white/10 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity hidden md:block whitespace-nowrap pointer-events-none tracking-wide">
                                 {item.label}
                             </span>
 
@@ -56,7 +56,7 @@ const Navbar = () => {
                 {/* Logout (Desktop) */}
                 <button
                     onClick={logout}
-                    className="hidden md:flex mt-auto items-center justify-center w-12 h-12 rounded-xl text-textMuted hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                    className="hidden md:flex mt-auto items-center justify-center w-12 h-12 rounded-full text-textMuted hover:text-red-400 hover:bg-red-500/10 transition-colors"
                     title="Logout"
                 >
                     <LogOut size={22} strokeWidth={1.5} />

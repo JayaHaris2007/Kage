@@ -126,7 +126,7 @@ const Dashboard = () => {
 
                 <button
                     onClick={() => setFocusMode(!focusMode)}
-                    className={`px-4 py-2 rounded-lg flex items-center space-x-2 transition-all border ${focusMode
+                    className={`px-6 py-2 rounded-full flex items-center space-x-2 transition-all border ${focusMode
                         ? 'bg-white text-black border-white shadow-[0_0_15px_rgba(255,255,255,0.2)]'
                         : 'bg-transparent border-white/10 text-textMuted hover:text-white hover:border-white/30'
                         }`}
@@ -154,21 +154,21 @@ const Dashboard = () => {
                     <div className="glass-card flex flex-col justify-between">
                         <h3 className="text-xs font-bold uppercase tracking-widest text-textMuted mb-4">Overview</h3>
                         <div className="space-y-3">
-                            <div className="flex items-center justify-between p-3 bg-white/5 border border-white/5 rounded-lg group hover:border-white/20 transition-colors">
+                            <div className="flex items-center justify-between p-3 bg-white/5 border border-white/5 rounded-full px-5 group hover:border-white/20 transition-colors">
                                 <div className="flex items-center space-x-3">
                                     <div className="text-white"><CheckCircle size={18} /></div>
                                     <span className="text-text text-sm">Tasks Done</span>
                                 </div>
                                 <span className="font-bold text-lg text-white font-mono">{completedTasks.length}</span>
                             </div>
-                            <div className="flex items-center justify-between p-3 bg-white/5 border border-white/5 rounded-lg group hover:border-white/20 transition-colors">
+                            <div className="flex items-center justify-between p-3 bg-white/5 border border-white/5 rounded-full px-5 group hover:border-white/20 transition-colors">
                                 <div className="flex items-center space-x-3">
                                     <div className="text-textMuted group-hover:text-white transition-colors"><Target size={18} /></div>
                                     <span className="text-text text-sm">Pending</span>
                                 </div>
                                 <span className="font-bold text-lg text-white font-mono">{pendingTasks.length}</span>
                             </div>
-                            <div className="flex items-center justify-between p-3 bg-white/5 border border-white/5 rounded-lg group hover:border-white/20 transition-colors">
+                            <div className="flex items-center justify-between p-3 bg-white/5 border border-white/5 rounded-full px-5 group hover:border-white/20 transition-colors">
                                 <div className="flex items-center space-x-3">
                                     <div className="text-white"><Zap size={18} /></div>
                                     <span className="text-text text-sm">Global Streak</span>
@@ -193,7 +193,7 @@ const Dashboard = () => {
                                     <p className="text-textMuted text-sm mt-1 line-clamp-2">{focusTasks[0].description || 'No description'}</p>
                                 </div>
                                 <div className="mt-4 flex justify-between items-center border-t border-white/5 pt-4">
-                                    <span className={`px-2 py-1 rounded text-[10px] uppercase font-bold tracking-wider bg-white/10 text-white border border-white/20`}>
+                                    <span className={`px-3 py-1 rounded-full text-[10px] uppercase font-bold tracking-wider bg-white/10 text-white border border-white/20`}>
                                         {focusTasks[0].priority}
                                     </span>
                                     <span className="text-xs text-textMuted font-mono">

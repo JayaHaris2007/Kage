@@ -309,7 +309,7 @@ const Settings = () => {
                                         type="text"
                                         value={displayName}
                                         onChange={(e) => setDisplayName(e.target.value)}
-                                        className="w-full bg-surfaceHighlight border border-white/5 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all font-mono"
+                                        className="w-full bg-surfaceHighlight border border-white/5 rounded-full py-3 px-6 text-white focus:outline-none focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all font-mono"
                                         placeholder="Enter your name"
                                         autoFocus
                                     />
@@ -318,7 +318,7 @@ const Settings = () => {
                                 <button
                                     type="submit"
                                     disabled={isLoading || !displayName.trim()}
-                                    className="w-full bg-white hover:bg-gray-200 text-black font-bold py-3 rounded-lg transition-colors shadow-[0_0_15px_rgba(255,255,255,0.1)] disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider text-sm flex items-center justify-center gap-2"
+                                    className="w-full bg-white hover:bg-gray-200 text-black font-bold py-3 rounded-full transition-colors shadow-[0_0_15px_rgba(255,255,255,0.1)] disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider text-sm flex items-center justify-center gap-2"
                                 >
                                     {isLoading ? <Loader size={18} className="animate-spin" /> : <Save size={18} />}
                                     Save Changes
