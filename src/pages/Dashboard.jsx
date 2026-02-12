@@ -12,6 +12,8 @@ import TaskCard from '../components/TaskCard';
 import CircularProgress from '../components/CircularProgress';
 import AnimeQuote from '../components/AnimeQuote';
 import ConfirmationModal from '../components/ConfirmationModal';
+import HabitWidget from '../components/HabitWidget';
+import TodoWidget from '../components/TodoWidget';
 
 const Dashboard = () => {
     const { currentUser } = useAuth();
@@ -208,7 +210,19 @@ const Dashboard = () => {
                         )}
                     </div>
                 </div>
+
             )}
+
+            {/* Phone Widgets Section - New */}
+            <section>
+                <h2 className="text-lg font-bold flex items-center space-x-2 text-white/90 uppercase tracking-widest mb-4">
+                    <span>Status Report</span>
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                    <HabitWidget habits={habits} onToggle={handleToggleHabit} />
+                    <TodoWidget tasks={tasks} onToggle={(id) => handleToggleTask(id, true)} />
+                </div>
+            </section>
 
             {/* Main Content Area */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -276,7 +290,7 @@ const Dashboard = () => {
                 title={deleteConfig.title}
                 message={deleteConfig.message}
             />
-        </div>
+        </div >
     );
 };
 
