@@ -26,7 +26,8 @@ const LandingPage = () => {
                 <div className="max-w-7xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <img src={AppLogo} alt="Logo" className="w-8 h-8 rounded-full" />
-                        <span className="text-xl font-bold tracking-wider hidden sm:block">HABIT PROTOCOL</span>
+                        <span className="text-xl font-bold tracking-wider sm:hidden">Kage</span>
+                        <span className="text-xl font-bold tracking-wider hidden sm:block">Kage - Habit Protocol</span>
                     </div>
                     <div className="flex items-center gap-2 md:gap-4">
                         <Link to="/login" className="text-sm font-medium text-textMuted hover:text-white transition-colors whitespace-nowrap">
@@ -131,7 +132,7 @@ const LandingPage = () => {
 
             {/* Footer */}
             <footer className="py-10 border-t border-white/10 text-center text-textMuted text-sm">
-                <p>&copy; {new Date().getFullYear()} Kage Habbit Tracker. All rights reserved.</p>
+                <p>&copy; {new Date().getFullYear()} Kage. All rights reserved.</p>
             </footer>
         </div>
     );

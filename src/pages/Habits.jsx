@@ -88,7 +88,7 @@ const Habits = () => {
         <div className="relative min-h-[calc(100vh-100px)] pb-20">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-white uppercase tracking-widest glow-white">Habit Protocol</h1>
+                    <h1 className="text-3xl font-bold text-white uppercase tracking-widest glow-white">Kage Protocol</h1>
                     <p className="text-textMuted text-xs font-mono mt-1">Consistency is key.</p>
                 </div>
                 <button

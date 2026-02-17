@@ -231,7 +231,7 @@ const Dashboard = () => {
                 <section className="space-y-4">
                     <h2 className="text-lg font-bold flex items-center space-x-2 text-white/90 uppercase tracking-widest">
                         <Zap size={18} />
-                        <span>{focusMode ? 'Pending Habits' : 'Habit Protocol'}</span>
+                        <span>{focusMode ? 'Pending Habits' : 'Habits'}</span>
                     </h2>
                     <div className="space-y-3">
                         {(focusMode ? focusHabits : todaysHabits).map(habit => (
