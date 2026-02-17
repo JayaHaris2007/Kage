@@ -11,6 +11,7 @@
     "deploy": "npm run build && npx firebase deploy --only hosting"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@tailwindcss/vite": "^4.1.18",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
@@ -19,7 +20,9 @@
     "lucide-react": "^0.563.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^7.13.0",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.4.0",
     "vite-plugin-pwa": "^1.2.0"
   },

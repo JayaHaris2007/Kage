@@ -10,6 +10,7 @@ import Habits from './pages/Habits';
 import Todos from './pages/Todos';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
+import LandingPage from './pages/LandingPage';
 import { AlertCircle } from 'lucide-react';
 
 const SetupScreen = () => (
@@ -58,6 +59,18 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
+const PublicRoute = ({ children }) => {
+  const { currentUser, loading } = useAuth();
+
+  if (loading) return <div className="min-h-screen flex items-center justify-center bg-background text-primary">Loading...</div>;
+
+  if (currentUser) {
+    return <Navigate to="/dashboard" />;
+  }
+
+  return children;
+};
+
 import { useNotifications } from './hooks/useNotifications';
 import { useMidnightReset } from './hooks/useMidnightReset';
 import { habitService } from './services/habitService';
@@ -98,10 +111,24 @@ function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-
           <Route path="/" element={
+            <PublicRoute>
+              <LandingPage />
+            </PublicRoute>
+          } />
+
+          <Route path="/login" element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          } />
+          <Route path="/signup" element={
+            <PublicRoute>
+              <Signup />
+            </PublicRoute>
+          } />
+
+          <Route path="/dashboard" element={
             <ProtectedRoute>
               <AppLayout><Dashboard /></AppLayout>
             </ProtectedRoute>
@@ -131,5 +158,6 @@ function App() {
     </AuthProvider>
   );
 }
+
 
 export default App;

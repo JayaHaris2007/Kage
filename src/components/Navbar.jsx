@@ -9,7 +9,7 @@ const Navbar = () => {
     const { logout } = useAuth();
 
     const navItems = [
-        { path: '/', icon: Home, label: 'Dashboard' },
+        { path: '/dashboard', icon: Home, label: 'Dashboard' },
         { path: '/habits', icon: CheckSquare, label: 'Habits' },
         { path: '/todos', icon: ListTodo, label: 'Tasks' },
         { path: '/analytics', icon: BarChart2, label: 'Analytics' },

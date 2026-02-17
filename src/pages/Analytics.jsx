@@ -3,12 +3,17 @@ import { useAuth } from '../context/AuthContext';
 import { habitService } from '../services/habitService';
 import { format, subDays, isSameDay } from 'date-fns';
 import { motion } from 'framer-motion';
-import { Flame, Calendar, Trophy } from 'lucide-react';
+import { Flame, Calendar, Trophy, BarChart3, Grid } from 'lucide-react';
+import YearlyHeatmap from '../components/analytics/YearlyHeatmap';
+import MonthlyChart from '../components/analytics/MonthlyChart';
+import WeekdayChart from '../components/analytics/WeekdayChart';
+import { calculateDailyCompletions, calculateMonthlyStats, calculateWeekdayStats, calculateYearlyTotal } from '../utils/analyticsUtils';
 
 const Analytics = () => {
     const { currentUser } = useAuth();
     const [habits, setHabits] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
     // Generate last 7 days for weekly view
     const last7Days = Array.from({ length: 7 }, (_, i) => {
@@ -61,6 +66,10 @@ const Analytics = () => {
     if (loading) return <div className="p-10 text-center animate-pulse text-textMuted">Analyzing data...</div>;
 
     const topHabit = getTopHabit();
+    const dailyCompletions = calculateDailyCompletions(habits, selectedYear);
+    const monthlyStats = calculateMonthlyStats(habits, selectedYear);
+    const weekdayStats = calculateWeekdayStats(habits);
+    const yearlyTotal = calculateYearlyTotal(habits, selectedYear);
 
     return (
         <div className="space-y-8 pb-20">
@@ -69,29 +78,65 @@ const Analytics = () => {
             </h1>
 
             {/* Overview Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="glass-card p-6 flex flex-col items-center justify-center text-center space-y-2 group hover:border-white/20 transition-colors">
                     <div className="p-3 bg-white/10 text-white rounded-full mb-2 group-hover:bg-white group-hover:text-black transition-colors">
-                        <Trophy size={24} />
+                        <Trophy size={20} />
                     </div>
                     <h3 className="text-textMuted text-xs uppercase tracking-widest">Weekly Sync</h3>
-                    <p className="text-3xl font-bold text-white font-mono">{getWeeklyCompletionRate()}%</p>
+                    <p className="text-2xl font-bold text-white font-mono">{getWeeklyCompletionRate()}%</p>
                 </div>
 
                 <div className="glass-card p-6 flex flex-col items-center justify-center text-center space-y-2 group hover:border-white/20 transition-colors">
                     <div className="p-3 bg-white/10 text-white rounded-full mb-2 group-hover:bg-white group-hover:text-black transition-colors">
-                        <Flame size={24} />
+                        <Flame size={20} />
                     </div>
                     <h3 className="text-textMuted text-xs uppercase tracking-widest">Max Streak</h3>
-                    <p className="text-3xl font-bold text-white font-mono">{getLongestStreak()} days</p>
+                    <p className="text-2xl font-bold text-white font-mono">{getLongestStreak()} days</p>
                 </div>
 
                 <div className="glass-card p-6 flex flex-col items-center justify-center text-center space-y-2 group hover:border-white/20 transition-colors">
                     <div className="p-3 bg-white/10 text-white rounded-full mb-2 group-hover:bg-white group-hover:text-black transition-colors">
-                        <Calendar size={24} />
+                        <Calendar size={20} />
+                    </div>
+                    <h3 className="text-textMuted text-xs uppercase tracking-widest">Yearly Activity</h3>
+                    <p className="text-2xl font-bold text-white font-mono">{yearlyTotal}</p>
+                </div>
+
+                <div className="glass-card p-6 flex flex-col items-center justify-center text-center space-y-2 group hover:border-white/20 transition-colors">
+                    <div className="p-3 bg-white/10 text-white rounded-full mb-2 group-hover:bg-white group-hover:text-black transition-colors">
+                        <BarChart3 size={20} />
                     </div>
                     <h3 className="text-textMuted text-xs uppercase tracking-widest">Top Protocol</h3>
-                    <p className="text-xl font-bold text-white truncate w-full px-2">{topHabit ? topHabit.name : 'N/A'}</p>
+                    <p className="text-lg font-bold text-white truncate w-full px-2">{topHabit ? topHabit.name : 'N/A'}</p>
+                </div>
+            </div>
+
+            {/* Yearly Heatmap */}
+            <div className="glass-card">
+                <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-xs font-bold uppercase tracking-widest px-2 text-textMuted flex items-center gap-2">
+                        <Grid size={14} />
+                        Yearly Overview
+                    </h3>
+                    <div className="text-xs text-textMuted font-mono">
+                        {selectedYear}
+                    </div>
+                </div>
+                <YearlyHeatmap dailyData={dailyCompletions} year={selectedYear} />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Monthly Performance */}
+                <div className="glass-card">
+                    <h3 className="text-xs font-bold uppercase tracking-widest mb-2 px-2 text-textMuted">Monthly Volume</h3>
+                    <MonthlyChart data={monthlyStats} />
+                </div>
+
+                {/* Weekday Performance */}
+                <div className="glass-card">
+                    <h3 className="text-xs font-bold uppercase tracking-widest mb-2 px-2 text-textMuted">Day Consistency</h3>
+                    <WeekdayChart data={weekdayStats} />
                 </div>
             </div>
 
@@ -121,6 +166,7 @@ const Analytics = () => {
                         {habits.map(habit => (
                             <tr key={habit.id} className="border-t border-white/5 hover:bg-white/5 transition-colors">
                                 <td className="py-4 px-4 font-medium text-white">{habit.name}</td>
+
                                 {last7Days.map(day => {
                                     const isCompleted = habit.completedDates?.includes(day.fullDate);
                                     return (
@@ -130,8 +176,8 @@ const Analytics = () => {
                                                     initial={{ scale: 0.8, opacity: 0 }}
                                                     animate={{ scale: 1, opacity: 1 }}
                                                     className={`w-6 h-6 rounded flex items-center justify-center transition-all ${isCompleted
-                                                            ? 'bg-white shadow-[0_0_10px_rgba(255,255,255,0.3)]'
-                                                            : 'bg-white/5 border border-white/5'
+                                                        ? 'bg-white shadow-[0_0_10px_rgba(255,255,255,0.3)]'
+                                                        : 'bg-white/5 border border-white/5'
                                                         }`}
                                                 >
                                                     {isCompleted && <div className="w-2 h-2 bg-black rounded-full" />}
@@ -163,3 +209,4 @@ const Analytics = () => {
 };
 
 export default Analytics;
+
