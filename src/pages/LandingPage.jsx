@@ -23,18 +23,18 @@ const LandingPage = () => {
         <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black overflow-x-hidden">
             {/* Navigation */}
             <nav className="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-lg border-b border-white/10">
-                <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                <div className="max-w-7xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <img src={AppLogo} alt="Logo" className="w-8 h-8 rounded-full" />
-                        <span className="text-xl font-bold tracking-wider">HABIT PROTOCOL</span>
+                        <span className="text-xl font-bold tracking-wider hidden sm:block">HABIT PROTOCOL</span>
                     </div>
-                    <div className="flex items-center gap-4">
-                        <Link to="/login" className="text-sm font-medium text-textMuted hover:text-white transition-colors">
+                    <div className="flex items-center gap-2 md:gap-4">
+                        <Link to="/login" className="text-sm font-medium text-textMuted hover:text-white transition-colors whitespace-nowrap">
                             Log In
                         </Link>
                         <Link
                             to="/signup"
-                            className="bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors"
+                            className="bg-white text-black px-3 md:px-5 py-2 rounded-full text-xs md:text-sm font-bold hover:bg-gray-200 transition-colors whitespace-nowrap"
                         >
                             Get Started
                         </Link>
