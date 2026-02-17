@@ -14,6 +14,7 @@ const firebaseConfig = {
 };
 
 console.log("Firebase Config Loaded:", firebaseConfig); // Debugging line
+// Trigger new build to pick up secrets
 
 // Check if config is valid
 const isConfigured = firebaseConfig.apiKey && firebaseConfig.projectId;
