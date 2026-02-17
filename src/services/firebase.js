@@ -4,13 +4,13 @@ import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_FIREBASE_APP_ID,
-    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyA2xgtrT4-44pN8JN7GaeBPdJ9otN34Mbg",
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "kage-40c41.firebaseapp.com",
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "kage-40c41",
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "kage-40c41.firebasestorage.app",
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "880667768970",
+    appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:880667768970:web:6286e0382c37544821d573",
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "G-4MGYK4MGJD"
 };
 
 console.log("Firebase Config Loaded:", firebaseConfig); // Debugging line
