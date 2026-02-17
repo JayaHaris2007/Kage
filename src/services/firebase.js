@@ -13,6 +13,8 @@ const firebaseConfig = {
     measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
+console.log("Firebase Config Loaded:", firebaseConfig); // Debugging line
+
 // Check if config is valid
 const isConfigured = firebaseConfig.apiKey && firebaseConfig.projectId;
 
