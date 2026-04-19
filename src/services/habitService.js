@@ -174,10 +174,6 @@ export const habitService = {
                 globalStreak: globalStreak
             });
 
-            await updateDoc(userRef, {
-                globalStreak: globalStreak
-            });
-
         } catch (error) {
             console.error("Error updating global streak: ", error);
         }

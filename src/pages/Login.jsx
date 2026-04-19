@@ -14,28 +14,55 @@ const Login = () => {
     const { googleSignIn } = useAuth();
     const navigate = useNavigate();
 
+    const getErrorMessage = (code) => {
+        switch (code) {
+            case 'auth/user-not-found':
+            case 'auth/wrong-password':
+            case 'auth/invalid-credential':
+                return 'Invalid email or password. Please try again.';
+            case 'auth/invalid-email':
+                return 'The email address is not valid.';
+            case 'auth/user-disabled':
+                return 'This account has been disabled. Contact support.';
+            case 'auth/too-many-requests':
+                return 'Too many failed attempts. Please try again later.';
+            case 'auth/popup-closed-by-user':
+                return 'Sign-in popup was closed. Please try again.';
+            case 'auth/popup-blocked':
+                return 'Sign-in popup was blocked by the browser. Please allow popups and try again.';
+            case 'auth/cancelled-popup-request':
+                return 'Only one sign-in popup can be open at a time.';
+            case 'auth/account-exists-with-different-credential':
+                return 'An account already exists with this email using a different sign-in method.';
+            case 'auth/network-request-failed':
+                return 'A network error occurred. Check your connection and try again.';
+            default:
+                return 'Authentication failed. Please try again.';
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
+        setLoading(true);
         try {
-            setError('');
-            setLoading(true);
             await signInWithEmailAndPassword(auth, email, password);
-            navigate('/');
+            navigate('/dashboard');
         } catch (err) {
-            setError('Failed to sign in. Please check your credentials.');
+            setError(getErrorMessage(err.code));
             console.error(err);
             setLoading(false);
         }
     };
 
     const handleGoogleSignIn = async () => {
+        setError('');
+        setLoading(true);
         try {
-            setError('');
-            setLoading(true);
             await googleSignIn();
-            navigate('/');
+            navigate('/dashboard');
         } catch (err) {
-            setError('Google authentication failed.');
+            setError(getErrorMessage(err.code));
             console.error(err);
             setLoading(false);
         }
